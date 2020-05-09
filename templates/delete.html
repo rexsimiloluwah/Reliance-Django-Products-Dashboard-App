@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="card card-body">
+        <h3 class="card-header">Are you Sure you want to delete Order "{{ order.product }}"</h3><hr>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+        <a href="{% url 'home' %}" class="btn btn-info"><span class="fa fa-home"></span> Cancel</a>
+        <a href=""><button type="submit" class="btn btn-danger"> <span class="fa fa-times"></span> Confirm</button></a>
+    </form>
+    </div>
+</div>
+
+{% endblock %}

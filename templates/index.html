@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-4"> 
+            <div class="card text-white mb-3 priver">
+                <div class="card-header text-center">TOTAL ORDERS</div>
+                <div class="card-body">
+                 
+                  <p class="card-text text-center" style="font-size: 40px;">{{ total_orders }}</p>
+                </div>
+        </div>
+    </div>
+
+        <div class="col-md-4">
+            <div class="card text-white mb-3 purple">
+                <div class="card-header text-center">ORDERS DELIVERED</div>
+                <div class="card-body">
+                 
+                  <p class="card-text text-center"  style="font-size: 40px;">{{ orders_delivered }}</p>
+                </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white orange mb-3">
+            <div class="card-header text-center">ORDERS PENDING</div>
+            <div class="card-body">
+              
+              <p class="card-text text-center"  style="font-size: 40px;">{{ orders_pending }}</p>
+            </div>
+    </div>
+</div>
+</div><hr>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-5">
+            <h5>Customers</h5>
+            <hr>
+            <div class="card card-body">
+                <a href="" class="btn btn-sm btn-block alizarin text-center"> <span class="fa fa-users"></span>  CREATE CUSTOMER</a>
+                <div style="overflow-x: auto;">
+                <table class="table table-bordered table-sm">
+                    <tr>
+                        <th>S/N</th>
+                        <th>Customer</th>
+                        <th>Email</th>
+                    </tr>
+
+                    {% for customer in customers %}
+                        <tr>
+                            <td>{{ customer.id }}</td>
+                            <td> <a href="{% url 'customer' customer.id %}" style="color: black;">{{ customer.name }} </a></td>
+                            <td>{{ customer.email }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div></div>
+
+        <div class="col-md-7">
+            <h5>Orders</h5>
+            <hr>
+            <div class="card card-body">
+                <a href="{% url 'create_order' %}" class="btn btn-sm btn-block alizarin text-center"> <span class="fa fa-shopping-basket rotate-n15"></span>  CREATE ORDER</a>
+                <div style="overflow-x: auto;">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Product</th>
+                        <th>Date Ordered</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.product.name }}</td>
+                        <td>{{ order.date_created }}</td>
+                        <td>{{ order.status }}</td>
+                        <td><a href="{% url 'update_order' order.id %}" class="btn btn-success btn-sm d-flex justify-content-center">Update</a></td>
+                        <td><a href="{% url 'delete_order' order.id %}" class="btn btn-danger btn-sm d-flex justify-content-center">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div></div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

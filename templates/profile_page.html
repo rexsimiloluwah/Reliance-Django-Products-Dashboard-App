@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card card-body">
+                <button class="btn btn-block btn-warning text-white">Back to Profile Page  <span class="fa fa-arrow-left"></span></button>
+                <hr>
+                <h4 class="text-center">Account Settings</h4><hr>
+                <div class="user-img d-flex justify-content-center" >
+                    <img src="{{ request.user.customer.profile_pic.url }}" alt="" style="clip-path: circle(70%)" width="100px" height="100px">
+            
+                </div>
+                <hr>
+            </div>
+        </div>
+
+
+        <div class="col-md-7">
+            <div class="card card-body">
+                <marquee behavior="" direction="ltr" class="text-success">Welcome {{ request.user.customer.name }}</marquee>
+
+                <hr>
+                <form action="" method="POST" enctype = "multipart/form-data">  
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-success">Submit <span class="fa fa-arrow-right"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let form_fields = document.getElementsByTagName('input')
+    console.log(form_fields)
+
+    for(var field in form_fields){
+        try{
+        {
+        form_fields[field].classList.add('form-control')
+        // form_fields[field].classList.add('form-control-user')
+        } 
+
+        }
+
+        catch(err){
+          console.log(true)
+        }
+    }
+</script>
+
+{% endblock %}

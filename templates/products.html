@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                <div class="card-header text-center bg-gradient-primary text-white">PRODUCTS INVENTORY</div>
+                    <div class="card-body">
+                        <div style="overflow-x: auto;">
+                        <table class="table table-bordered">
+
+                            <tr>
+                                <th>PRODUCT NAME</th>
+                                <th>CATEGORY</th>
+                                <th>PRICE</th>
+                            </tr>
+
+                            {% for product in products %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.category }}</td>
+                                <td> &#8358 {{ product.price }}</td>
+                              
+                            </tr>
+
+                            {% endfor %}
+                            
+                        </table>
+                    </div></div>
+                </div>
+            </div>
+        </div></div>
+    
+{% endblock %}
