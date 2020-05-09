@@ -1,0 +1,1 @@
+web: gunicorn reliance.wsgi --log-file -
